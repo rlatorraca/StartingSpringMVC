@@ -1,0 +1,25 @@
+ @charset "utf-8";
+ 
+.card-header {
+	padding-top: 12px;
+}
+.card {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.header{
+	padding: 5px 0px;
+	margin-bottom: 20px;
+	height: 60px;
+	
+	background-color: #262626;
+	color: #fff;
+	
+	box-shadow: 0px 2px 2px #ccc;
+}
+
+#form-horizontal {
+	margin: 20px;
+	
+}
