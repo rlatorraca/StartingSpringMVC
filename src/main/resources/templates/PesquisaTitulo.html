@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="LayoutPadrao">
+
+<head>
+<title>Pesquisa de títulos</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+
+	<form class="form-horizontal" method="POST" action="/titulos">
+
+		<div id="form-horizontal">
+
+			<div class="card">
+
+				<div class="card-header">
+						<div class="clearfix">
+		   					<h5 class="panel-title titulo-panel-css">Pesquida de títulos</h5>
+		   					<a class="btn btn-link link-panel-css" href="/titulos/novo">Novo título</a>
+		   				</div>		
+				</div>
+					<div class="card-body">
+
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th scope="col" class="text-center">#</th>
+									<th scope="col" class="text-center col-md-4">Descrição</th>
+									<th scope="col" class="text-center col-md-2">Data de
+										vencimento</th>
+									<th scope="col" class="text-right col-md-2">Valor</th>
+									<th scope="col" class="text-center col-md-2">Status</th>
+									<th scope="col" class="text-center col-md-1">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td scope="row" colspan="6">Nenhum título foi encontrado</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</section>
+
+</html>

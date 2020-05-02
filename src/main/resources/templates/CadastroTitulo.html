@@ -1,56 +1,58 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="LayoutPadrao">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Cadastro de título</title>
-
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-
+	<title>Cadastro de título</title>
 </head>
 
-<body>
-	<nav class="navbar navbar-light bg-light navbar-dark-header-css">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#"> <img alt="RLSProjects"
-				src="/images/RLSProject-Logo3.png" width="100" height="60" />
-			</a>
-		</div>
-	</nav>
+<section layout:fragment="conteudo">
 
-	<form class="form-horizontal"  method="POST" action="/titulos">
-	
-	
+	<form class="form-horizontal" method="POST" action="/titulos">
+
+
 		<div id="form-horizontal">
-		
-			<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-    			<span th:text="${mensagem}"></span>
-			</div>
-			<div class="card">
 
-				<div class="card-header">Novo título</div>
+			<div class="alert alert-success"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}"></span>
+			</div>
+
+			<div class="card">
+				
+				<div class="card-header">
+					<div class="clearfix">
+		   				<h5 class="panel-title titulo-panel-css">Novo título</h5>
+		   				<a class="btn btn-link link-panel-css" href="/titulos">Pesquisar títulos</a>
+		   			</div>
+				
+				</div>
 
 				<div class="card-body">
 
 					<div class="form-group row">
-						<label for="descricao" class="col-sm-2 col-form-label text-right">Descrição :</label>
+						<label for="descricao" class="col-sm-2 col-form-label text-right">Descrição
+							:</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="descricao" name="descricao" />
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="dataVencimento" class="col-sm-2 col-form-label text-right">Data
-							de Vencimento :</label>
+						<label for="dataVencimento"
+							class="col-sm-2 col-form-label text-right">Data de
+							Vencimento :</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="dataVencimento" name="dataVencimento" />
+							<input type="text" class="form-control" id="dataVencimento"
+								name="dataVencimento" />
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="valor" class="col-sm-2 col-form-label text-right">Valor :</label>
+						<label for="valor" class="col-sm-2 col-form-label text-right">Valor
+							:</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="valor" name="valor" />
 						</div>
@@ -61,10 +63,9 @@
 							:</label>
 						<div class="col-sm-2">
 							<select class="custom-select" id="status" name="status">
-								<option selected>Select...</option>
-								<option value="PENDENTE">Pendente</option>
-								<option value="RECEBIDO">Recebido</option>
-								<option value="RECEBIDOCOMULTA">Recebido com multa</option>
+								<!-- ThymeLeaf  -->
+								<option th:each="statusTitulo : ${todosStatusTitulo}"
+									th:value="${statusTitulo}" th:text="${statusTitulo.descricao}"></option>
 							</select>
 						</div>
 					</div>
@@ -80,6 +81,8 @@
 
 		</div>
 	</form>
-	<script src="/js/bootstrap.min.js"></script>
-</body>
+
+
+</section>
+
 </html>

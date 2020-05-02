@@ -4,7 +4,8 @@ public enum StatusTitulo {
 
 	PENDENTE("Pendente"),
 	RECEBIDO("Recebido"),
-	RECEBIDOCOMULTA("Recebido com Multa");
+	RECEBIDOCOMULTA("Recebido com Multa"),
+	CANCELADO("Cancelado");
 	
 	private String descricao;
 	
