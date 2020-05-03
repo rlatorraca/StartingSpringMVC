@@ -11,9 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+
 
 @Entity
 public class Titulo {
@@ -22,17 +29,35 @@ public class Titulo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotBlank(message = "Descrição é obrigatória")
+	@Size(max = 60, message = "A descrição não pode conter mais de 60 caracteres")
 	private String descricao;
 	
+	@NotNull(message = "Date de vencimento é obrigatória")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 	
+	@NotNull(message = "Valor não pode ser vazio")
+	@DecimalMin(value = "0.01", message = "Valor não pode ser menor que 0,01")
+	@DecimalMax(value = "9999999.99", message = "Valor não pode ser maior que 9.999.999,99")
 	@NumberFormat(pattern = "#,###,##0.00")
 	private BigDecimal valor;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusTitulo status;
+	
+	public boolean isPendente() {
+		return StatusTitulo.PENDENTE.equals(this.status);
+	}
+	
+	public boolean isRecebidoComMulta() {
+		return StatusTitulo.RECEBIDOCOMULTA.equals(this.status);
+	}
+	
+	public boolean isRecebido() {
+		return StatusTitulo.RECEBIDO.equals(this.status);
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -98,5 +123,7 @@ public class Titulo {
 			return false;
 		return true;
 	}
+
+
 
 }

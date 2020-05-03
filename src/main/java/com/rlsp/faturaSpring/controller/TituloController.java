@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,23 +27,24 @@ public class TituloController {
 	public ModelAndView novo() {
 	
 		ModelAndView mv = new ModelAndView("CadastroTitulo");
-		
+		mv.addObject(new Titulo());
 		return mv; // Nome da VIEW sem .html
-	}
-	
-	
-	
+	}	
 	
 	/**
 	 * ModelAndView ==> retorma uma VIEW e mais INFORMACOES junto 
 	 * 
 	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(Titulo titulo) {
+	@RequestMapping(method = RequestMethod.POST)	
+	public ModelAndView salvar(@Validated Titulo titulo, Errors errors) {
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		if (errors.hasFieldErrors()) {
+			return mv;
+		}
+		
 		titulos.save(titulo);
 		
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
-		mv.addObject("mensagem", "Titulo salvo com sucesso");
+		mv.addObject("mensagem", "Título salvo com sucesso!");
 		return mv;
 	}
 	
@@ -54,7 +57,10 @@ public class TituloController {
 	}
 	
 	@RequestMapping
-	public String pesquisar() {
-		return "PesquisaTitulo";
+	public ModelAndView pesquisar() {
+		List<Titulo> todosTitulos = titulos.findAll();
+		ModelAndView mv = new ModelAndView("PesquisaTitulo");
+		mv.addObject("titulos", todosTitulos);
+		return mv;
 	}
 }

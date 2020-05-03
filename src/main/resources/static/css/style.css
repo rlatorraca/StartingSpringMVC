@@ -39,3 +39,10 @@
 	padding-top: 5px;	
 	margin-bottom: -.2rem;
 }
+
+.badge-default {
+	color: #F0F0F0;
+	border-radius: .4rem;
+    padding-top: .2rem;
+    padding-bottom: .3rem;
+}
