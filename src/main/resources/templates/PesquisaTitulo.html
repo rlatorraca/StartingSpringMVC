@@ -8,10 +8,7 @@
 <title>Pesquisa de títulos</title>
 </head>
 
-<section layout:fragment="conteudo">
-
-
-	<form class="form-horizontal" method="POST" action="/titulos">
+<section layout:fragment="conteudo">	
 
 		<div id="form-horizontal">
 
@@ -49,7 +46,21 @@
 									                                                                                 ${titulo.RecebidoComMulta ? 'bg-info badge-pill' : ''} + 
 									                                                                                 ${titulo.recebido ? 'bg-success badge-pill' : ''}"></span>
 								</td>
-								<td class="text-center"></td>
+								<td class="text-center">
+   									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+   									title="Editar" rel="tooltip" data-placement="top">
+   										<span class="fas fa-pencil-alt"></span>
+   									</a>
+   									
+   									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+	   									th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+	   									title="Excluir" rel="tooltip" data-placement="top">
+   										<span class="fas fa-trash-alt"></span>
+   									</a>
+   							   </td>   							   
+   							 
+   							   
+	   							   
 							</tr>
 							<tr>
 								<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
@@ -59,9 +70,10 @@
 					</table>
 				</div>
 			</div>
+				<div layout:insert="DialogoConfirmacaoExclusao"></div>
 		</div>
 		
-	</form>
+	
 
 </section>
 

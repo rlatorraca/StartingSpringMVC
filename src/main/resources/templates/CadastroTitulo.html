@@ -15,7 +15,8 @@
 
 		<div id="form-horizontal">
 
-			<div layout:insert="Mensagem"></div>
+			<div layout:insert="MensagemGeral"></div>
+			<div layout:insert="MensagemErro"></div>
 
 			<div class="card">
 				
@@ -28,12 +29,14 @@
 				</div>
 
 				<div class="card-body">
+				
+					<input type="hidden" th:field="*{codigo}">
 
 					<div class="form-group row" >
 						<label for="descricao" class="col-sm-2 col-form-label text-right">Descrição
 							:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="descricao" name="descricao" th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" />
+							<input type="text" class="form-control" id="descricao" th:field="*{descricao}" th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" />
 						</div>
 					</div>
 
@@ -42,7 +45,7 @@
 							class="col-sm-2 col-form-label text-right" >Data de	Vencimento :</label>
 						<div class="col-sm-2" >
 							<input type="text" class="form-control" id="dataVencimento"
-								name="dataVencimento" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"/>
+								th:field="*{dataVencimento}" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"/>
 						</div>
 					</div>
 
@@ -50,7 +53,7 @@
 						<label for="valor" class="col-sm-2 col-form-label text-right">Valor
 							:</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="valor" name="valor"  th:classappend="${#fields.hasErrors('valor')} ? is-invalid" />
+							<input type="text" class="form-control" id="valor" th:field="*{valor}"  th:classappend="${#fields.hasErrors('valor')} ? is-invalid" />
 						</div>
 					</div>
 
@@ -58,7 +61,7 @@
 						<label for="valor" class="col-sm-2 col-form-label text-right">Status
 							:</label>
 						<div class="col-sm-2">
-							<select class="custom-select" id="status" name="status">
+							<select class="custom-select" id="status" th:field="*{status}">
 								<!-- ThymeLeaf  -->
 								<option th:each="statusTitulo : ${todosStatusTitulo}"
 									th:value="${statusTitulo}" th:text="${statusTitulo.descricao}"></option>
