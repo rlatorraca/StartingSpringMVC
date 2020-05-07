@@ -4,7 +4,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta name="viewport" content="width=device-width" />
 		<title>Cobrança</title>
 		
 		<!-- Latest ICONS Bootstrap 4 -->
@@ -16,8 +18,8 @@
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" 
 			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 	
-		
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
 	
 	</head>
 	
@@ -26,17 +28,18 @@
 		
 		<section layout:fragment="conteudo">
 			<p>Conteúdo principal</p>
-		</section>
-	
+		</section>		
 		
 		
-		<script type="text/javascript" src="/js/jquery-3.5.0.min.js"></script>
-	
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-		<!-- Latest compiled and minified JavaScript -->	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<script  type="text/javascript"src="/js/fatura.js"></script>
-	
+		<script type="text/javascript" th:src="@{/js/jquery-3.5.0.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.maskMoney.js}"></script>
+		<script type="text/javascript" th:src="@{/js/fatura.js}"></script>	
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>	
+		
+		
+		
 	</body>
 </html>

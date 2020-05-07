@@ -17,11 +17,27 @@
 				<div class="card-header">
 					<div class="clearfix">
 						<h5 class="panel-title titulo-panel-css">Pesquida de títulos</h5>
-						<a class="btn btn-link link-panel-css" href="/titulos/novo">Novo
+						<a class="btn btn-link link-panel-css" th:href="@{/titulos/novo}">Novo
 							título</a>
 					</div>
 				</div>
 				<div class="card-body">
+				
+				<form method="GET" th:action="@{/titulos}" th:object="${filtro}">
+		   			<div class="form-group row">
+		   				<div class="col-sm-4">
+		   					<div class="input-group-append">
+		   						<input class="form-control" placeholder="Qual título você está procurando?"
+		   							autofocus="autofocus" th:field="*{descricao}"></input>
+		   						<span class="input-group-btn">
+		   							<button type="submit" class="btn btn-default">
+		   								<i class="fas fa-search"></i>
+		   							</button>
+		   						</span>
+		   					</div>
+		   				</div>
+		   			</div>
+	   			</form>
 
 					<table class="table table-striped table-bordered table-responsive-lg">
 						<thead>
@@ -40,23 +56,29 @@
 								<td th:text="${titulo.descricao}"></td>
 								<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
 								<td class="text-right" th:text="|R$ ${{titulo.valor}}|"></td>
-								<td class="text-center">
+								<td class="text-center" th:attr="data-role=${titulo.codigo}">
 									<!-- <span class="label" th:text="${titulo.status.descricao}" th:classappend="${#strings.toString(titulo.status) == PENDENTE ? 'label-danger' : 'label-success'}"></span>  -->
-									<span class="badge-default" th:text="${titulo.status.descricao}" th:classappend="${titulo.pendente ? 'bg-danger badge-pill' : ''} + 
-									                                                                                 ${titulo.RecebidoComMulta ? 'bg-info badge-pill' : ''} + 
-									                                                                                 ${titulo.recebido ? 'bg-success badge-pill' : ''}"></span>
+									<span class="badge-default"  th:text="${titulo.status.descricao}" th:classappend="${titulo.pendente ? 'bg-danger badge-pill' : ''} + 
+									                                                                                  ${titulo.RecebidoComMulta ? 'bg-info badge-pill' : ''} + 
+									                                                                                  ${titulo.recebido ? 'bg-success badge-pill' : ''}"></span>
 								</td>
 								<td class="text-center">
    									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
    									title="Editar" rel="tooltip" data-placement="top">
-   										<span class="fas fa-pencil-alt"></span>
+   										<span class="far fa-edit"></span>
    									</a>
    									
    									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
 	   									th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
 	   									title="Excluir" rel="tooltip" data-placement="top">
-   										<span class="fas fa-trash-alt"></span>
+   										<span class="far fa-times-circle"></span>
    									</a>
+   									
+   									<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
+			   							title="Receber" rel="tooltip" data-placement="top" th:attr="data-codigo=${titulo.codigo}"
+			   							th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+			   							<span class="far fa-check-square"></span>
+			   						</a>
    							   </td>   							   
    							 
    							   

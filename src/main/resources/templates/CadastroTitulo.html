@@ -10,7 +10,7 @@
 
 <section layout:fragment="conteudo">
 
-	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}">
+	<form class="form-horizontal" method="POST" th:action="@{/titulos}" th:object="${titulo}">
 
 
 		<div id="form-horizontal">
@@ -23,7 +23,7 @@
 				<div class="card-header">
 					<div class="clearfix">
 		   				<h5 class="panel-title titulo-panel-css">Novo título</h5>
-		   				<a class="btn btn-link link-panel-css" href="/titulos">Pesquisar títulos</a>
+		   				<a class="btn btn-link link-panel-css" th:href="@{/titulos}">Pesquisar títulos</a>
 		   			</div>
 				
 				</div>
@@ -44,8 +44,10 @@
 						<label for="dataVencimento"
 							class="col-sm-2 col-form-label text-right" >Data de	Vencimento :</label>
 						<div class="col-sm-2" >
-							<input type="text" class="form-control" id="dataVencimento"
-								th:field="*{dataVencimento}" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"/>
+							<input type="text" class="form-control datepicker" id="dataVencimento"
+								th:field="*{dataVencimento}" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"
+								data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							    data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom" />
 						</div>
 					</div>
 
@@ -53,7 +55,7 @@
 						<label for="valor" class="col-sm-2 col-form-label text-right">Valor
 							:</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="valor" th:field="*{valor}"  th:classappend="${#fields.hasErrors('valor')} ? is-invalid" />
+							<input type="text" class="form-control moeda" id="valor" th:field="*{valor}"  th:classappend="${#fields.hasErrors('valor')} ? is-invalid" />
 						</div>
 					</div>
 

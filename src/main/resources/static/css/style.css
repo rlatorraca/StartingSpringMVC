@@ -46,3 +46,17 @@
     padding-top: .2rem;
     padding-bottom: .3rem;
 }
+
+ 
+/* Tela grande */
+@media (min-width: 768px) {
+	.panel-default {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	.alert {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}

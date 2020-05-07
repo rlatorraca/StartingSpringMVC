@@ -14,13 +14,13 @@
 	<groupId>com.rlsp</groupId>
 	<artifactId>faturaSpring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>faturaSpring</name>
+	<name>faturaspring</name>
+	<packaging>war</packaging>
 	<description>App to fees in Spring MVC</description>
 
 	<properties>
 		<java.version>13</java.version>
 	</properties>
-
 	<dependencies>
 
 		<dependency>
@@ -54,18 +54,13 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.19</version>	    	
 			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -82,6 +77,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
